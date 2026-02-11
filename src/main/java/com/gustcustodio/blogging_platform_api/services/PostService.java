@@ -34,4 +34,11 @@ public class PostService {
         return postMapper.convertEntityListToDtoList(postList);
     }
 
+    @Transactional
+    public PostDTO createNewPost(PostDTO postDTO) {
+        Post post = postMapper.convertDtoToEntity(postDTO);
+        post = postRepository.save(post);
+        return postMapper.convertEntityToDto(post);
+    }
+
 }
