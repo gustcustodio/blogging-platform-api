@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/posts")
 public class PostController {
@@ -22,6 +24,12 @@ public class PostController {
     public ResponseEntity<PostDTO> getSinglePost(@PathVariable Long id) {
         PostDTO postDTO = postService.getSinglePost(id);
         return ResponseEntity.ok(postDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PostDTO>> getAllPosts() {
+        List<PostDTO> postDTOList = postService.getAllPosts();
+        return ResponseEntity.ok().body(postDTOList);
     }
 
 }

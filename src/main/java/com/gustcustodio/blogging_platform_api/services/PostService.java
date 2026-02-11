@@ -7,6 +7,8 @@ import com.gustcustodio.blogging_platform_api.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -24,6 +26,12 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow();
         PostDTO postDTO = postMapper.convertEntityToDto(post);
         return postDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostDTO> getAllPosts() {
+        List<Post> postList = postRepository.findAll();
+        return postMapper.convertEntityListToDtoList(postList);
     }
 
 }
