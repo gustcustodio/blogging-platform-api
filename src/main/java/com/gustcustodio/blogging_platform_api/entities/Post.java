@@ -52,7 +52,7 @@ public class Post {
     @PrePersist
     public void prePersist() {
         this.createdAt = Instant.now();
-        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
     }
 
     @PreUpdate
