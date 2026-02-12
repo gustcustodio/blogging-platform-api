@@ -49,4 +49,9 @@ public class PostService {
         return postMapper.convertEntityToDto(post);
     }
 
+    @Transactional
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
+
 }
