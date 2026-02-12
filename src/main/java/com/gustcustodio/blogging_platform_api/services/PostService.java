@@ -41,4 +41,12 @@ public class PostService {
         return postMapper.convertEntityToDto(post);
     }
 
+    @Transactional
+    public PostDTO updatePost(Long id, PostDTO postDTO) {
+        Post post = postRepository.getReferenceById(id);
+        postMapper.updateEntityFromDto(postDTO, post);
+        post = postRepository.save(post);
+        return postMapper.convertEntityToDto(post);
+    }
+
 }
