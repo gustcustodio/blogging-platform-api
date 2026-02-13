@@ -2,6 +2,7 @@ package com.gustcustodio.blogging_platform_api.controllers;
 
 import com.gustcustodio.blogging_platform_api.dtos.PostDTO;
 import com.gustcustodio.blogging_platform_api.services.PostService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,14 +33,14 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostDTO> createNewPost(@RequestBody PostDTO postDTO) {
+    public ResponseEntity<PostDTO> createNewPost(@Valid @RequestBody PostDTO postDTO) {
         postDTO = postService.createNewPost(postDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(postDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(postDTO);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<PostDTO> updatePost(@PathVariable Long id, @RequestBody PostDTO postDTO) {
+    public ResponseEntity<PostDTO> updatePost(@PathVariable Long id, @Valid @RequestBody PostDTO postDTO) {
         postDTO = postService.updatePost(id, postDTO);
         return ResponseEntity.ok(postDTO);
     }
