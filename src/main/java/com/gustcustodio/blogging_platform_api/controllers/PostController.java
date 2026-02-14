@@ -27,8 +27,8 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PostDTO>> getAllPosts() {
-        List<PostDTO> postDTOList = postService.getAllPosts();
+    public ResponseEntity<List<PostDTO>> getAllPosts(@RequestParam(name = "term", defaultValue = "") String term) {
+        List<PostDTO> postDTOList = postService.getAllPosts(term);
         return ResponseEntity.ok().body(postDTOList);
     }
 

@@ -33,8 +33,8 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostDTO> getAllPosts() {
-        List<Post> postList = postRepository.findAll();
+    public List<PostDTO> getAllPosts(String term) {
+        List<Post> postList = postRepository.searchByTerm(term);
         return postMapper.convertEntityListToDtoList(postList);
     }
 
