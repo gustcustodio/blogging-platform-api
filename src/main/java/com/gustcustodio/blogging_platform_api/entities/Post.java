@@ -43,10 +43,10 @@ public class Post {
     @Column(name = "tag_name")
     private List<String> tags = new ArrayList<String>();
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private Instant createdAt;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
     private Instant updatedAt;
 
     @PrePersist
